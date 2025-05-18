@@ -11,11 +11,13 @@ namespace BrothelGame.Infrastructure.States
 
         public GameStateMachine(
             GameStateChanger gameStateChanger,
-            BootstrapState.Factory bootstrapStateFactory)
+            BootstrapState.Factory bootstrapStateFactory,
+            MainState.Factory mainStateFactory)
         {
             states = new Dictionary<Type, IState>()
             {
-                [typeof(BootstrapState)] = bootstrapStateFactory.Create(this)
+                [typeof(BootstrapState)] = bootstrapStateFactory.Create(this),
+                [typeof(MainState)] = mainStateFactory.Create(this)
             };
 
             gameStateChanger.Initialize(this);

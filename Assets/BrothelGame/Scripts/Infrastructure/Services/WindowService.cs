@@ -7,6 +7,7 @@ using BrothelGame.Windows;
 using BrothelGame.Infrastructure.Core;
 using BrothelGame.Windows.DialogueWindow;
 using BrothelGame.Infrastructure.Extensions;
+using BrothelGame.Infrastructure.Data;
 
 namespace BrothelGame.Infrastructure.Services
 {
@@ -44,11 +45,23 @@ namespace BrothelGame.Infrastructure.Services
             TurnOffAllViews();
         }
 
+        public void Clear()
+        {
+            _methods.Clear();
+            _methodsWithArgs.Clear();
+            Views.Clear();
+        }
+
         public void Open(WindowId id)
         {
             if (Views.ContainsKey(id) && _methods.ContainsKey(id))
             {
                 View view = Views[id];
+
+                if (view.IsActive())
+                {
+                    return;
+                }
                 view.ClearViewModel();
                 _methods[id].Invoke();
                 view.SetActive(true);

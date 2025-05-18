@@ -36,6 +36,39 @@ namespace BrothelGame.Infrastructure.Core
                 childViews[i].ClearViewModel();
             }
         }
+
+        protected TView CreateView<TView, THierarchy>(THierarchy hierarchy)
+                        where TView : View<THierarchy> where THierarchy : MonoBehaviour
+        {
+            TView view = viewFactory.CreateView<TView, THierarchy>(hierarchy);
+
+            childViews.Add(view);
+            AddDisposable(view);
+
+            return view;
+        }
+
+        protected TView CreateView<TView, THierarchy>(THierarchy hierarchy, Transform parent)
+            where TView : View<THierarchy> where THierarchy : MonoBehaviour
+        {
+            TView view = viewFactory.CreateView<TView, THierarchy>(hierarchy, parent);
+
+            childViews.Add(view);
+            AddDisposable(view);
+
+            return view;
+        }
+
+        protected TView CreateView<TView, THierarchy>(string prefabName, Transform parent)
+            where TView : View<THierarchy> where THierarchy : MonoBehaviour
+        {
+            TView view = viewFactory.CreateView<TView, THierarchy>(prefabName, parent);
+
+            childViews.Add(view);
+            AddDisposable(view);
+
+            return view;
+        }
     }
 
     public abstract class View<THierarchy> : View where THierarchy : MonoBehaviour

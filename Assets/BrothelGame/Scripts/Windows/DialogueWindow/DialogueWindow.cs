@@ -3,34 +3,62 @@ using System.Collections;
 using System.Collections.Generic;
 using Articy.Unity;
 using Articy.Unity.Interfaces;
+using BrothelGame.Infrastructure.Providers;
 using R3;
 using UnityEngine;
 
 namespace BrothelGame.Windows.DialogueWindow
 {
-    // TODO: Разделить ответственность, не должно окно знать про артиси
-    public class DialogueWindow : IArticyFlowPlayerCallbacks
+    public class DialogueWindow
     {
         public event Action<bool> OnDialogueGoing;
-        public string DialogueText { get; private set; }
+        public event Action<string> OnNewTextSet;
+        public event Action<IList<Branch>> OnNewBranchesCreated;
 
-        public void StartDialogue(ArticyFlowPlayer flowPlayer, IArticyObject aObject)
+        public ArticyFlowPlayer FlowPlayer => flowPlayer;
+
+        private readonly ArticyFlowPlayer flowPlayer;
+
+        public DialogueWindow(ArticyProvider articyProvider)
+        {
+            flowPlayer = articyProvider.FlowPlayer;
+
+            ResetSubscriptions(articyProvider);
+        }
+
+        public void StartDialogue(IArticyObject aObject)
         {
             flowPlayer.StartOn = aObject;
+            flowPlayer.Play();
+            Debug.Log("Starting dialogue " + aObject.TechnicalName);
 
             OnDialogueGoing?.Invoke(true);
         }
 
-        public void OnFlowPlayerPaused(IFlowObject aObject)
+        private void ResetSubscriptions(ArticyProvider articyProvider)
         {
-            if (aObject is IObjectWithText objectWithText)
-            {
-                DialogueText = objectWithText.Text;
-            }
+            articyProvider.OnNewTextSet -= SetText;
+            articyProvider.OnNewBranchesCreated -= SetBranches;
+            articyProvider.OnDialogueEnd -= EndDialogue;
+
+            articyProvider.OnNewTextSet += SetText;
+            articyProvider.OnNewBranchesCreated += SetBranches;
+            articyProvider.OnDialogueEnd += EndDialogue;
         }
 
-        public void OnBranchesUpdated(IList<Branch> aBranches)
+        private void SetText(string text)
         {
+            OnNewTextSet?.Invoke(text);
+        }
+
+        private void SetBranches(IList<Branch> branches)
+        {
+            OnNewBranchesCreated?.Invoke(branches);
+        }
+
+        private void EndDialogue()
+        {
+            OnDialogueGoing?.Invoke(false);
         }
     }
 }

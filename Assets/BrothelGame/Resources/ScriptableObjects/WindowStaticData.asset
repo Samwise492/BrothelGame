@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 374e55eeccd538b45a3e9e49bd2724d3, type: 3}
-  m_Name: DialogueData
+  m_Script: {fileID: 11500000, guid: 4f9d702abd78fad4b9ca28306bd5e583, type: 3}
+  m_Name: WindowStaticData
   m_EditorClassIdentifier: 
-  refa: {fileID: 0}
+  Windows:
+  - Id: 1
+    Hierarchy: {fileID: 6692248057695250623, guid: 261fd6515547cb645b18aab8f84253bb, type: 3}
