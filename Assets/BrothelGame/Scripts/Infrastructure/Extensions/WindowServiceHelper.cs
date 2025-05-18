@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using BrothelGame.Infrastructure.Core;
+﻿using BrothelGame.Infrastructure.Core;
 
 namespace BrothelGame.Infrastructure.Extensions
 {

@@ -1,10 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Articy.Unity;
 using Articy.Unity.Interfaces;
 using BrothelGame.Infrastructure.Providers;
-using R3;
 using UnityEngine;
 
 namespace BrothelGame.Windows.DialogueWindow

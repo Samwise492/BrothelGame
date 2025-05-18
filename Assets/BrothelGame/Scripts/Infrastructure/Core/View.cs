@@ -1,12 +1,9 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using BrothelGame.Infrastructure.Core;
-using BrothelGame.Windows;
 using R3;
 using ObservableCollections;
 
@@ -31,14 +28,14 @@ namespace BrothelGame.Infrastructure.Core
 
         public virtual void ClearViewModel()
         {
-            for (var i = 0; i < childViews.Count; i++)
+            for (int i = 0; i < childViews.Count; i++)
             {
                 childViews[i].ClearViewModel();
             }
         }
 
         protected TView CreateView<TView, THierarchy>(THierarchy hierarchy)
-                        where TView : View<THierarchy> where THierarchy : MonoBehaviour
+            where TView : View<THierarchy> where THierarchy : MonoBehaviour
         {
             TView view = viewFactory.CreateView<TView, THierarchy>(hierarchy);
 
@@ -92,8 +89,8 @@ namespace BrothelGame.Infrastructure.Core
     }
 
     public abstract class View<THierarchy, TViewModel> : View<THierarchy>
-            where THierarchy : MonoBehaviour
-            where TViewModel : class, IViewModel
+        where THierarchy : MonoBehaviour
+        where TViewModel : class, IViewModel
     {
         private readonly List<IDisposable> bindDisposables = new();
         private readonly List<(Button button, UnityAction onClick)> bindButtonDisposables = new();
@@ -128,7 +125,7 @@ namespace BrothelGame.Infrastructure.Core
 
             bindDisposables.Clear();
 
-            for (var index = 0; index < bindButtonDisposables.Count; index++)
+            for (int index = 0; index < bindButtonDisposables.Count; index++)
             {
                 (Button button, UnityAction onClick) = bindButtonDisposables[index];
                 button.onClick.RemoveListener(onClick);
@@ -136,7 +133,7 @@ namespace BrothelGame.Infrastructure.Core
 
             bindButtonDisposables.Clear();
 
-            for (var index = 0; index < bindSliderDisposables.Count; index++)
+            for (int index = 0; index < bindSliderDisposables.Count; index++)
             {
                 (Slider slider, UnityAction<float> onChange) = bindSliderDisposables[index];
                 slider.onValueChanged.RemoveListener(onChange);
@@ -144,7 +141,7 @@ namespace BrothelGame.Infrastructure.Core
 
             bindSliderDisposables.Clear();
 
-            for (var index = 0; index < bindToggleDisposables.Count; index++)
+            for (int index = 0; index < bindToggleDisposables.Count; index++)
             {
                 (Toggle toggle, UnityAction<bool> onChange) = bindToggleDisposables[index];
                 toggle.onValueChanged.RemoveListener(onChange);
@@ -152,13 +149,13 @@ namespace BrothelGame.Infrastructure.Core
 
             bindToggleDisposables.Clear();
 
-            for (var index = 0; index < bindSubmitDisposables.Count; index++)
+            for (int index = 0; index < bindSubmitDisposables.Count; index++)
             {
                 (TMP_InputField inputField, UnityAction<string> onChange) = bindSubmitDisposables[index];
                 inputField.onSubmit.RemoveListener(onChange);
             }
 
-            for (var index = 0; index < bindValueChangedDisposables.Count; index++)
+            for (int index = 0; index < bindValueChangedDisposables.Count; index++)
             {
                 (TMP_InputField inputField, UnityAction<string> onChange) = bindValueChangedDisposables[index];
                 inputField.onValueChanged.RemoveListener(onChange);
@@ -166,7 +163,7 @@ namespace BrothelGame.Infrastructure.Core
 
             bindToggleDisposables.Clear();
 
-            for (var index = 0; index < bindScroll.Count; index++)
+            for (int index = 0; index < bindScroll.Count; index++)
             {
                 (ScrollRect.ScrollRectEvent toggle, UnityAction<Vector2> onChange) = bindScroll[index];
                 toggle.RemoveListener(onChange);
@@ -174,7 +171,7 @@ namespace BrothelGame.Infrastructure.Core
 
             bindScroll.Clear();
 
-            for (var index = 0; index < bindScrollbar.Count; index++)
+            for (int index = 0; index < bindScrollbar.Count; index++)
             {
                 (Scrollbar.ScrollEvent toggle, UnityAction<float> onChange) = bindScrollbar[index];
                 toggle.RemoveListener(onChange);
@@ -182,7 +179,7 @@ namespace BrothelGame.Infrastructure.Core
 
             bindScrollbar.Clear();
 
-            for (var index = 0; index < bindDropDownDisposables.Count; index++)
+            for (int index = 0; index < bindDropDownDisposables.Count; index++)
             {
                 (TMP_Dropdown toggle, UnityAction<int> onChange) = bindDropDownDisposables[index];
                 toggle.onValueChanged.RemoveListener(onChange);

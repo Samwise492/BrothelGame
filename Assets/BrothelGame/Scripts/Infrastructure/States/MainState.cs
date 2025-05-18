@@ -1,21 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using BrothelGame.Infrastructure.Services;
-using UnityEngine;
 using Zenject;
 
 namespace BrothelGame.Infrastructure.States
 {
     public class MainState : IState
     {
-        private readonly GameStateMachine gameStateMachine;
         private readonly IWindowService windowService;
         private readonly IDialogueService dialogueService;
         private readonly IStaticDataService staticDataService;
 
-        public MainState(GameStateMachine gameStateMachine, IWindowService windowService, IDialogueService dialogueService, IStaticDataService staticDataService)
+        public MainState(GameStateMachine gameStateMachine, // we'll need this GSM later on for sure. But for prototype it's redundant
+            IWindowService windowService,
+            IDialogueService dialogueService,
+            IStaticDataService staticDataService)
         {
-            this.gameStateMachine = gameStateMachine;
             this.windowService = windowService;
             this.dialogueService = dialogueService;
             this.staticDataService = staticDataService;

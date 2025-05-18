@@ -1,6 +1,5 @@
 using BrothelGame.Infrastructure.Data;
 using BrothelGame.Infrastructure.Services;
-using BrothelGame.Windows;
 using UnityEngine;
 using Zenject;
 

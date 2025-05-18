@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using BrothelGame.Infrastructure.States;
 
 namespace BrothelGame.Infrastructure.States
 {

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using BrothelGame.Infrastructure.Core;
-using UnityEngine;
 
 namespace BrothelGame.Windows.DialogueWindow.ChoiceBranch
 {

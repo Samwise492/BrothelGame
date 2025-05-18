@@ -1,9 +1,6 @@
 using System.Collections.Generic;
-using UnityEngine;
 using Zenject;
-using System;
 using System.Linq;
-using BrothelGame.Windows;
 using BrothelGame.Infrastructure.Core;
 using BrothelGame.Windows.DialogueWindow;
 using BrothelGame.Infrastructure.Extensions;
@@ -36,8 +33,6 @@ namespace BrothelGame.Infrastructure.Services
 
         public void Initialize()
         {
-            //_methodsWithArgs.Add(WindowId.Dialogue, OpenDialogueWindow);
-
             _methods.Add(WindowId.Dialogue, OpenDialogueWindow);
 
             _windowViewFactory.CreateDialogueWindow();
@@ -54,7 +49,12 @@ namespace BrothelGame.Infrastructure.Services
 
         public void Open(WindowId id)
         {
-            if (Views.ContainsKey(id) && _methods.ContainsKey(id))
+            if (!_methods.ContainsKey(id))
+            {
+                return;
+            }
+
+            if (Views.ContainsKey(id))
             {
                 View view = Views[id];
 
@@ -62,11 +62,12 @@ namespace BrothelGame.Infrastructure.Services
                 {
                     return;
                 }
+
                 view.ClearViewModel();
                 _methods[id].Invoke();
                 view.SetActive(true);
             }
-            else if (_methods.ContainsKey(id))
+            else
             {
                 _methods[id].Invoke();
             }
@@ -75,6 +76,12 @@ namespace BrothelGame.Infrastructure.Services
         public void OpenWithArgs(WindowId id, object[] args)
         {
             View view = Views[id];
+
+            if (view.IsActive())
+            {
+                return;
+            }
+
             view.ClearViewModel();
             _methodsWithArgs[id].Invoke(args);
             view.SetActive(true);
@@ -103,7 +110,7 @@ namespace BrothelGame.Infrastructure.Services
         private void OpenDialogueWindow()
         {
             View view = Views[WindowId.Dialogue];
-            var viewModel = Instantiate<DialogueWindowViewModel>();
+            DialogueWindowViewModel viewModel = Instantiate<DialogueWindowViewModel>();
             view.Cast<DialogueWindowView>().Initialize(viewModel);
         }
 

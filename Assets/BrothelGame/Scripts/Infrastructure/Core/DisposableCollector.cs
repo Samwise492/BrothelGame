@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace BrothelGame.Infrastructure.Core
 {
@@ -15,7 +14,7 @@ namespace BrothelGame.Infrastructure.Core
 
         public virtual void Dispose()
         {
-            for (var i = 0; i < _disposables.Count; i++)
+            for (int i = 0; i < _disposables.Count; i++)
             {
                 _disposables[i].Dispose();
             }

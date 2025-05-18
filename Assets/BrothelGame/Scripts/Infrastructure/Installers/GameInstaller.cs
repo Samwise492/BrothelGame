@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using Articy.Unity;
 using BrothelGame.Infrastructure.Providers;
 using BrothelGame.Infrastructure.Services;
 using BrothelGame.Infrastructure.States;
-using BrothelGame.Windows.DialogueWindow;
 using UnityEngine;
 using Zenject;
 

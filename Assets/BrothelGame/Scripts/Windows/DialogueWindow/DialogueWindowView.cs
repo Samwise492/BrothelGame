@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using BrothelGame.Infrastructure.Core;
 using BrothelGame.Infrastructure.Extensions;
@@ -84,7 +83,8 @@ namespace BrothelGame.Windows.DialogueWindow
 
         private void CreateBranch(ChoiceBranchViewModel choiceBranchViewModel)
         {
-            ChoiceBranchView view = CreateView<ChoiceBranchView, ChoiceBranchHierarchy>(Hierarchy.ChoiceBranchPrefab, Hierarchy.ChoiceBranchContainer);
+            ChoiceBranchView view = CreateView<ChoiceBranchView, ChoiceBranchHierarchy>(
+                Hierarchy.ChoiceBranchPrefab, Hierarchy.ChoiceBranchContainer);
             view.Initialize(choiceBranchViewModel);
 
             choiceBranchViews.Add(view);

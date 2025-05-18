@@ -1,11 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using BrothelGame.Infrastructure.Data;
-using BrothelGame.Windows;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using Zenject;
 
 namespace BrothelGame.Infrastructure.Services
 {

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using BrothelGame.Infrastructure.States;
 using UnityEngine;
 using Zenject;

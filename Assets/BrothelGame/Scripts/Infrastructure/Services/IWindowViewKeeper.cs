@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using BrothelGame.Infrastructure.Core;
 using BrothelGame.Infrastructure.Data;
-using BrothelGame.Windows;
 
 namespace BrothelGame.Infrastructure.Services
 {

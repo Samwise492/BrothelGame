@@ -14,6 +14,4 @@ namespace BrothelGame.Infrastructure.Services
             return instantiate;
         }
     }
-
-
 }

@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using BrothelGame.Windows.DialogueWindow;
-using UnityEngine;
 using Zenject;
 
 namespace BrothelGame.Infrastructure.Installers

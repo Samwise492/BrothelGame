@@ -1,6 +1,5 @@
 using BrothelGame.Infrastructure.Core;
 using BrothelGame.Infrastructure.Data;
-using BrothelGame.Windows;
 using BrothelGame.Windows.DialogueWindow;
 
 namespace BrothelGame.Infrastructure.Services

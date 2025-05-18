@@ -1,9 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using BrothelGame.Infrastructure.Data;
 using BrothelGame.ScriptableObjects;
-using BrothelGame.Windows;
 using UnityEngine;
 
 namespace BrothelGame.Infrastructure.Services
@@ -38,15 +35,16 @@ namespace BrothelGame.Infrastructure.Services
         private void CreateDialogueData()
         {
             DialogueStaticData staticData = Resources.Load<DialogueStaticData>(DialogueStaticDataPath);
+
             dialogueDataDictionary = new();
             DialogueData = new DialogueData[staticData.Dialogues.Length];
 
             for (int i = 0; i < staticData.Dialogues.Length; i++)
             {
                 DialogueData dialogue = staticData.Dialogues[i];
-                dialogueDataDictionary.Add(dialogue.Id, dialogue);
 
-                DialogueData[i] = staticData.Dialogues[i];
+                dialogueDataDictionary.Add(dialogue.Id, dialogue);
+                DialogueData[i] = dialogue;
             }
         }
 

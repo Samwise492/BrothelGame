@@ -1,5 +1,4 @@
 using UnityEngine;
-using BrothelGame.Windows;
 using BrothelGame.Infrastructure.Data;
 
 namespace BrothelGame.Infrastructure.Core
